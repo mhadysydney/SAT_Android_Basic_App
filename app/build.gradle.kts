@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.satapp.soft224"
         minSdk = 21
-        34.also { targetSdk = it }
+        35.also { targetSdk = it }
         versionCode = 5
         versionName = "2.11.1"
 

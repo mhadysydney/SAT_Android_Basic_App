@@ -40,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
     this.timer = new Timer();
     TimerTask timerTask = new TimerTask() {
 
-
         public void run() {
+            //System.out.println("timer run exect with reset: "+reset);
           reset=0;
+            //System.out.println("timer run exect with reset after: "+reset);
         }
       };
-    this.timer.schedule(timerTask, 1000L, 2000L);
+    this.timer.schedule(timerTask, 3000L, 4000L);
     this.webView = (WebView)findViewById(R.id.webview);
     this.error = (LinearLayout)findViewById(R.id.error);
     ImageButton imageButton = (ImageButton)findViewById(R.id.reload);
@@ -96,9 +97,11 @@ public class MainActivity extends AppCompatActivity {
           if (webView.canGoBack()) {
             webView.goBack();
           } else if (reset < 2) {
+              reset++;
+              Log.i("Info","Reset: "+reset);
             Toast.makeText((Context)MainActivity.this, "Taper encore la touche Arrière pour quitter", Toast.LENGTH_SHORT).show();
           } else {
-            MainActivity.this.finish();
+            finish();
             System.exit(0);
           } 
         }
