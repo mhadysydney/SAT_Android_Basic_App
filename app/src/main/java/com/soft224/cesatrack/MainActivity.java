@@ -1,4 +1,4 @@
-package com.satapp.soft224;
+package com.soft224.cesatrack;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
 
-import java.util.ServiceLoader;
 import java.util.Timer;
 import java.util.TimerTask;
 

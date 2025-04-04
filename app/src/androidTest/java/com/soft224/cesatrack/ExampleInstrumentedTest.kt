@@ -1,4 +1,4 @@
-package com.satapp.soft224
+package com.soft224.cesatrack
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.satapp.soft224", appContext.packageName)
+        assertEquals("com.soft224.cesatrack", appContext.packageName)
     }
 }

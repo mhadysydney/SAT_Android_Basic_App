@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.satapp.soft224"
+    namespace = "com.soft224.cesatrack"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.satapp.soft224"
+        applicationId = "com.soft224.cesatrack"
         minSdk = 21
         35.also { targetSdk = it }
         versionCode = 5
