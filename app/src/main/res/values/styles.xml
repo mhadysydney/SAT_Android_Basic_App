@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AlertDialog.AppCompat" parent="@style/Base.AlertDialog.AppCompat" />
     <style name="AlertDialog.AppCompat.Light" parent="@style/Base.AlertDialog.AppCompat.Light" />
     <style name="Animation.AppCompat.Dialog" parent="@style/Base.Animation.AppCompat.Dialog" />
@@ -758,12 +758,13 @@
         <item name="switchTextAppearance">@style/TextAppearance.AppCompat.Widget.Switch</item>
         <item name="track">@drawable/abc_switch_track_mtrl_alpha</item>
     </style>
-    <style name="Base.Widget.AppCompat.DrawerArrowToggle" parent="@style/Base.Widget.AppCompat.DrawerArrowToggle.Common">
+    <style name="Base.Widget.AppCompat.DrawerArrowToggle" parent="@style/Base.Widget.AppCompat.DrawerArrowToggle.Common"
+           tools:ignore="PrivateResource,ResourceCycle">
         <item name="barLength">18.0dip</item>
         <item name="drawableSize">24.0dip</item>
         <item name="gapBetweenBars">3.0dip</item>
     </style>
-    <style name="Base.Widget.AppCompat.DrawerArrowToggle.Common" parent="">
+    <style name="Base.Widget.AppCompat.DrawerArrowToggle.Common" parent="" tools:ignore="PrivateResource">
         <item name="arrowHeadLength">8.0dip</item>
         <item name="arrowShaftLength">16.0dip</item>
         <item name="color">?android:textColorSecondary</item>

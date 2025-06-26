@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     this.webView.getSettings().setAllowFileAccess(true);
     this.webView.getSettings().setBlockNetworkImage(false);
     this.webView.getSettings().setLoadsImagesAutomatically(true);
-    this.webView.loadUrl("http://plateform.cesa-track.com/app/mindex.php");
+    this.webView.loadUrl("http://basic.satgroupe.com/app/mindex.php");
     this.webView.setWebViewClient(new WebViewClient() {
 
           
