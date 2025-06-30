@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,11 +62,15 @@ public class MainActivity extends AppCompatActivity {
           }
         });
     this.webView.getSettings().setJavaScriptEnabled(true);
-    this.webView.getSettings().setAllowContentAccess(true);
-    this.webView.getSettings().setAllowFileAccess(true);
-    this.webView.getSettings().setBlockNetworkImage(false);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+          this.webView.getSettings().setAllowContentAccess(true);
+      }
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+          this.webView.getSettings().setAllowFileAccess(true);
+      }
+      this.webView.getSettings().setBlockNetworkImage(false);
     this.webView.getSettings().setLoadsImagesAutomatically(true);
-    this.webView.loadUrl("http://basic.satgroupe.com/app/mindex.php");
+    this.webView.loadUrl("https://basic.satgroupe.com/app/mindex.php");
     this.webView.setWebViewClient(new WebViewClient() {
 
           

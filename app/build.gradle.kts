@@ -12,8 +12,8 @@ android {
         applicationId = "com.soft224.cesatrack"
         minSdk = 21
         35.also { targetSdk = it }
-        versionCode = 7
-        versionName = "2.12"
+        versionCode = 8
+        versionName = "2.13"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.startup.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
