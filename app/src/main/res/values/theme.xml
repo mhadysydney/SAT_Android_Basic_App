@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Demo" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+
+    </style>
+
+    <style name="Theme.Demo" parent="Base.Theme.Demo" />
+
+    <!-- add the following code-->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#D8D7D7</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_inset</item>
+        <item name="postSplashScreenTheme">@style/Theme.Demo</item>
+    </style>
+
+</resources>
