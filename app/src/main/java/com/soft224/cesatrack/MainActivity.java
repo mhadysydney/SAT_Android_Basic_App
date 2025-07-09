@@ -1,5 +1,6 @@
 package com.soft224.cesatrack;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,7 +16,6 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.core.splashscreen.SplashScreen;
 /*
 import androidx.lifecycle.lifecycleScope;
 import kotlinx.coroutines.delay;
@@ -26,15 +26,14 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
   private LinearLayout error;
-  
-  private ImageButton reload;
-  
-  private int reset = 0;
+
+    private int reset = 0;
   
   Timer timer;
-  
+  boolean gotError=false;
   private WebView webView;
   
+
   protected void onCreate(Bundle paramBundle) {
    // setTheme(R.style.MyApp.Splash);
      // SplashScreen.installSplashScreen(this);
@@ -44,34 +43,29 @@ public class MainActivity extends AppCompatActivity {
     TimerTask timerTask = new TimerTask() {
 
         public void run() {
-            //System.out.println("timer run exect with reset: "+reset);
+
           reset=0;
-            //System.out.println("timer run exect with reset after: "+reset);
+
         }
       };
     this.timer.schedule(timerTask, 3000L, 4000L);
     this.webView = (WebView)findViewById(R.id.webview);
     this.error = (LinearLayout)findViewById(R.id.error);
    // ImageButton imageButton
-      this.reload= (ImageButton)findViewById(R.id.reload);
+      ImageButton reload = (ImageButton) findViewById(R.id.reload);
    // this.reload = imageButton;
     reload.setOnClickListener(new View.OnClickListener() {
 
-
-
-
         public void onClick(View param1View) {
             Log.i("Click", "Reloading...");
+
             webView.reload();
+            //error.setVisibility(View.INVISIBLE);
           }
         });
     this.webView.getSettings().setJavaScriptEnabled(true);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-          this.webView.getSettings().setAllowContentAccess(true);
-      }
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
-          this.webView.getSettings().setAllowFileAccess(true);
-      }
+      this.webView.getSettings().setAllowContentAccess(true);
+      this.webView.getSettings().setAllowFileAccess(true);
       this.webView.getSettings().setBlockNetworkImage(false);
     this.webView.getSettings().setLoadsImagesAutomatically(true);
     this.webView.loadUrl("https://basic.satgroupe.com/app/mlogin.php");
@@ -80,12 +74,32 @@ public class MainActivity extends AppCompatActivity {
           
           public void onPageStarted(WebView param1WebView, String param1String, Bitmap param1Bitmap) {
             super.onPageStarted(param1WebView, param1String, param1Bitmap);
+              //error.setVisibility(View.INVISIBLE);
+              gotError=false;
           }
-          
-          public void onReceivedError(WebView param1WebView, WebResourceRequest param1WebResourceRequest, WebResourceError param1WebResourceError) {
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            if(gotError)
+                error.setVisibility(View.VISIBLE);
+            else error.setVisibility(View.GONE);
+        }
+
+        public void onReceivedError(WebView param1WebView, WebResourceRequest param1WebResourceRequest, WebResourceError param1WebResourceError) {
             //super.onReceivedError(param1WebView, param1WebResourceRequest, param1WebResourceError);
               Log.d("pageReceivedError 1","errorCode: "+param1WebResourceRequest);
-              if(param1WebResourceRequest.isForMainFrame()){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                Log.d("pageReceivedError 1","errorCode111: "+param1WebResourceError.getDescription());
+                if(param1WebResourceError.getErrorCode()<0){
+                    gotError=true;
+                    Log.d("pageReceivedError 1","errorCode11: "+(param1WebResourceError.getErrorCode()<0));
+                    error.setVisibility(View.VISIBLE);
+                }
+            }
+            if(param1WebResourceRequest.isForMainFrame()){
+                gotError=true;
                   error.setVisibility(View.VISIBLE);
               }
           }
@@ -93,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
             Log.d("onReceivedHttpError","errorCode: "+errorResponse.getStatusCode());
-            if(errorResponse.getStatusCode()==400 || errorResponse.getStatusCode()==500){
+            if(errorResponse.getStatusCode()>=400){
+                gotError=true;
                 error.setVisibility(View.VISIBLE);
             }
         }

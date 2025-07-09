@@ -12,8 +12,8 @@ android {
         applicationId = "com.soft224.cesatrack"
         minSdk = 21
         35.also { targetSdk = it }
-        versionCode = 9
-        versionName = "2.15"
+        versionCode = 10
+        versionName = "2.16"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
